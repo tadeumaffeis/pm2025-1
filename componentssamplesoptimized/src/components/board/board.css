@@ -1,0 +1,76 @@
+.container {
+    display: flex;
+    flex-direction: column; /* Ajusta os filhos verticalmente */
+    align-items: center; /* Centraliza os filhos dentro da div */
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0px;
+    border: 1px solid #0000FF;
+    margin-bottom: 5px;
+}
+
+.score {
+    display: flex;
+    grid-column: span 3;
+    flex-direction: row;
+    justify-content: left;
+    text-align: left;
+    align-items: center;
+    font-size: 20px;
+    padding: 10px;
+    color: #494955;
+    border: 1px solid #0000FF;
+}
+
+.button {
+    margin-top: 10px;
+    padding-top: 4px;
+}
+
+.little-circle {
+    width: 30px; /* Largura da div */
+    height: 30px; /* Altura igual à largura para manter o círculo */
+    border-radius: 50%; /* Torna a div circular */
+    border: 3px solid blue; /* Cor e espessura da borda */
+    /*background-color: lightgray; /* Cor de fundo opcional */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+    margin: 5px;
+}
+
+.x-little-shape {
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.x-little-shape::before,
+.x-little-shape::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px; /* Espessura da borda */
+    height: 100%;
+    background-color: blue; /* Cor da borda */
+    transform-origin: center;
+}
+
+.x-little-shape::before {
+    transform: rotate(45deg);
+}
+
+.x-little-shape::after {
+    transform: rotate(-45deg);
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CellOptimized from '../cell/CellOptimized.jsx';
+import './board.css';
 
 export function BoardOptimized() {
     const [board, setBoard] = useState(Array(9).fill(null));
@@ -50,10 +51,22 @@ export function BoardOptimized() {
     };
 
     return (
-        <>
-            <div style={style.boardStyle}>
-                <div style={style.scoreStyle}>Jogada: {player === 0 ? 'O' : 'X'}</div>
-                <div style={style.scoreStyle}>Vencedor: {winner === null ? '_' : winner === 0 ? 'O' : 'X'}</div>
+        <div className="container">
+            <div className="board">
+                <div className="score">Jogada: 
+                    { player === 0 
+                    ? <div className="little-circle"/> 
+                    : <div className="x-little-shape"/> 
+                    }
+                </div>
+                <div className="score">Vencedor:   
+                    { winner === null 
+                    ? <div/> 
+                    : winner === 0 
+                        ? <div className="little-circle"/>  
+                        : <div className="x-little-shape"/> 
+                    }
+                </div>
                 {board.map((obj, index) => (
                     <CellOptimized
                         key={index}
@@ -65,30 +78,10 @@ export function BoardOptimized() {
                 ))}
             </div>
             <div>
-                <button style={style.buttomStyle} onClick={clearBoard}>Reiniciar</button>
+                <button className="buttom" onClick={clearBoard}>Reiniciar</button>
             </div>
-        </>
+        </div>
     );
 }
 
 export default BoardOptimized;
-
-const style = {
-    boardStyle: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '0px',
-        border: '1px solid #0000FF',
-    },
-    scoreStyle: {
-        gridColumn: 'span 3',
-        textAlign: 'left',
-        fontSize: '20px',
-        padding: '10px',
-        color: '#494955',
-        border: '1px solid #0000FF',
-    },
-    buttomStyle: {
-        marginTop: '10px',
-    },
-};
