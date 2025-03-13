@@ -9,3 +9,15 @@ if (arr[1])
 else{
     console.log("It´s null")
 }
+
+let reset = () => {
+    console.log("Reset")
+}
+
+const obj = { content: 'Hello, World!', reset };
+
+reset = null;
+
+if (obj.reset) {
+    obj.reset();
+}

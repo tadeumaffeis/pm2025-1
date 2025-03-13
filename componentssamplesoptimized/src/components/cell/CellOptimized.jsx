@@ -1,35 +1,41 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './cell.css';
 
-export function CellOptimized({ index, cell, onChange }) {
-    // eslint-disable-next-line no-unused-vars
-    const [select, setCellSelect] = useState(null);
-
-    //const isCellSelected = () => select !== null; // ✅ Agora retorna corretamente
+export function CellOptimized({ index, cell, gameover, onChange }) {
+    const [cellObj, setCellObj] = useState(cleanedCell);
 
     const renderLabel = () => {
-
-        if (cell === 0) {
-            return <div className="circle" />;
+        if (cellObj?.getPlayer) {
+            return cellObj.getPlayer() === 0 
+                ? <div className="circle" /> 
+                : cellObj.getPlayer() === 1 
+                ? <div className="x-shape" /> 
+                : <div />;
         }
-        if (cell === 1) {
-            return <div className='x-shape' />;
-        }
-        return <div></div>;
+        return <div />;
     };
 
-    console.log('index:', index);
+    const getPlayer = () => (cellObj ? cellObj.cell : null);
+    const resetObj = () => setCellObj(cleanedCell);
+
+    const handleClick = () => {
+        if (gameover) return;
+        if (cellObj !== null && cellObj.cell !== null) return;
+        const newCellObj = {
+            index,
+            cell,
+            getPlayer: () => cell?.player ?? null,
+            reset: () => resetObj(),
+        };
+        setCellObj(newCellObj);
+        onChange(newCellObj, index);
+        console.log('newCellObj:', newCellObj);
+    };
 
     return (
-        <div 
-            key={index + 1000} 
-            className="cell" 
-            onClick={() => {
-                setCellSelect(cell); // ✅ Atualiza o estado APENAS no clique, não na renderização
-                onChange(index);
-            }}
-        >
+        <div key={index} className="cell" onClick={handleClick}>
             {renderLabel()}
         </div>
     );
@@ -38,7 +44,16 @@ export function CellOptimized({ index, cell, onChange }) {
 CellOptimized.propTypes = {
     index: PropTypes.number.isRequired,
     cell: PropTypes.number.isRequired,
+    gameover: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
 };
 
 export default CellOptimized;
+
+
+const cleanedCell = {
+    index: null,
+    cell: null,
+    getPlayer: () => null,
+    reset: () => null,
+};

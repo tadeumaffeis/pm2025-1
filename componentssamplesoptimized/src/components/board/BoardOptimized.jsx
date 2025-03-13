@@ -6,64 +6,60 @@ export function BoardOptimized() {
     const [player, setPlayer] = useState(0);
     const [winner, setWinner] = useState(null);
 
-    // Verifica o vencedor após cada atualização do board
     useEffect(() => {
         const win = checkWinner();
         if (win !== null) {
             setWinner(win);
         }
-    }, [board]); // 🚀 Agora o vencedor é verificado corretamente após cada jogada
+    }, [board]);
 
-    // Função para verificar o vencedor
     const checkWinner = () => {
-        const BOARD = [
-            [board[0], board[1], board[2]],
-            [board[3], board[4], board[5]],
-            [board[6], board[7], board[8]],
+        const BOARD = board.map(cell => (cell ? cell.getPlayer() : null));
+
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Linhas
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colunas
+            [0, 4, 8], [2, 4, 6]             // Diagonais
         ];
 
-        for (let i = 0; i < 3; i++) {
-            if (BOARD[i][0] !== null && BOARD[i][0] === BOARD[i][1] && BOARD[i][1] === BOARD[i][2]) {
-                return BOARD[i][0];
-            }
-            if (BOARD[0][i] !== null && BOARD[0][i] === BOARD[1][i] && BOARD[1][i] === BOARD[2][i]) {
-                return BOARD[0][i];
+        for (let pattern of winPatterns) {
+            const [a, b, c] = pattern;
+            if (BOARD[a] !== null && BOARD[a] === BOARD[b] && BOARD[b] === BOARD[c]) {
+                return BOARD[a]; // Retorna o jogador vencedor (0 ou 1)
             }
         }
-
-        if (BOARD[0][0] !== null && BOARD[0][0] === BOARD[1][1] && BOARD[1][1] === BOARD[2][2]) return BOARD[0][0];
-        if (BOARD[0][2] !== null && BOARD[0][2] === BOARD[1][1] && BOARD[1][1] === BOARD[2][0]) return BOARD[0][2];
-
         return null;
     };
 
-    // Atualiza o tabuleiro quando um jogador faz uma jogada
-    const onBoardChange = (index) => {
-        if (board[index] !== null || winner !== null) return; // Impede jogadas inválidas
-
+    const onBoardChange = (cellObj, index) => {
+        if (winner !== null) return;
         const newBoard = [...board];
-        newBoard[index] = player;
+        newBoard[index] = cellObj;
         setBoard(newBoard);
-
-        setPlayer((prevPlayer) => (prevPlayer + 1) % 2);
+        if (winner !== null) return;
+        setPlayer(prevPlayer => (prevPlayer + 1) % 2);
     };
 
     const clearBoard = () => {
+        board.forEach(cell => {
+            if (cell?.reset) cell.reset();
+        });
         setBoard(Array(9).fill(null));
+        setPlayer(0);
         setWinner(null);
     };
 
     return (
         <>
-           
             <div style={style.boardStyle}>
                 <div style={style.scoreStyle}>Jogada: {player === 0 ? 'O' : 'X'}</div>
                 <div style={style.scoreStyle}>Vencedor: {winner === null ? '_' : winner === 0 ? 'O' : 'X'}</div>
-                {board.map((cell, index) => (
+                {board.map((obj, index) => (
                     <CellOptimized
                         key={index}
                         index={index}
-                        cell={cell}
+                        cell={{ player }}
+                        gameover={winner !== null}
                         onChange={onBoardChange}
                     />
                 ))}
