@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './cell.css';
 
 export function CellOptimized({ index, cell, gameover, onChange }) {
-    const [cellObj, setCellObj] = useState(cleanedCell);
+    const [cellObj, setCellObj] = useState(cellFactory());
 
     const renderLabel = () => {
         if (cellObj?.getPlayer) {
@@ -18,7 +18,7 @@ export function CellOptimized({ index, cell, gameover, onChange }) {
     };
 
     const getPlayer = () => (cellObj ? cellObj.cell : null);
-    const resetObj = () => setCellObj(cleanedCell);
+    const resetObj = () => setCellObj(cellFactory());
 
     const handleClick = () => {
         if (gameover) return;
@@ -51,9 +51,13 @@ CellOptimized.propTypes = {
 export default CellOptimized;
 
 
-const cleanedCell = {
-    index: null,
-    cell: null,
-    getPlayer: () => null,
-    reset: () => null,
-};
+function cellFactory() {
+    let index = null;
+    let cell = null;
+    return {
+        index,
+        cell,
+        getPlayer: () => null,
+        getCell: () => null,
+    };
+}   

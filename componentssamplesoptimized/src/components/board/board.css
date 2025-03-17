@@ -6,6 +6,7 @@
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    font: 16px Arial, sans-serif;
 }
 
 .board {
@@ -16,11 +17,11 @@
     margin-bottom: 5px;
 }
 
-.score {
+.round {
     display: flex;
+    height: 40px;
     grid-column: span 3;
     flex-direction: row;
-    justify-content: left;
     text-align: left;
     align-items: center;
     font-size: 20px;
@@ -28,10 +29,57 @@
     color: #494955;
     border: 1px solid #0000FF;
 }
+.round-label {
+    width: 80%;
+    align-items: center;
+}
+
+.round-right-label {
+    width: 20%;
+    align-items: right;
+    text-align: right;
+    text-shadow: #5d5da1;
+    font-weight: bold;
+}
+
+.score-title {
+    width: 100%;
+    grid-column: span 3;
+    border: 1px solid #0000FF;
+    flex-direction: row;
+}
+.score-label-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #dbdbe2;
+    background-color: #5d5da1;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 3px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    width: 100%;
+    grid-column: span 3;
+    border: 1px solid #0000FF;
+}
 
 .button {
-    margin-top: 10px;
-    padding-top: 4px;
+    margin: 1px;
+    width: 100%;
+    color: white;
+    background-color: #5d5da1;
+    border: 1px solid white;         /* Remove a borda */
+    padding: 5px 5px;   /* Adiciona um espaçamento interno opcional */
+    font-size: 12px;      /* Ajusta o tamanho da fonte */
+    cursor: pointer;      /* Mantém o cursor como um ponteiro */
+    outline: none;        /* Remove a borda ao focar (evita efeito azul no Chrome) */
+    box-shadow: none;  
 }
 
 .little-circle {
@@ -51,8 +99,8 @@
 
 .x-little-shape {
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 
 .x-little-shape::before,
