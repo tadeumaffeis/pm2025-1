@@ -41,11 +41,20 @@
     text-shadow: #5d5da1;
     font-weight: bold;
 }
+.score {
+    grid-column: span 3;
+    padding: 2px;
+}
 
+.score .round {
+    border: 2px solid #11111a;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
 .score-title {
     width: 100%;
     grid-column: span 3;
-    border: 1px solid #0000FF;
+    border: 1px solid #11111a;
     flex-direction: row;
 }
 .score-label-title {
@@ -80,6 +89,36 @@
     cursor: pointer;      /* Mantém o cursor como um ponteiro */
     outline: none;        /* Remove a borda ao focar (evita efeito azul no Chrome) */
     box-shadow: none;  
+}
+
+.history {
+    display: flex;
+    flex-grow: 5;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    width: 100%;
+    grid-column: span 3;
+    border: 1px solid #0000FF;
+}
+
+.prev, .next {
+    margin: 1px;
+    width: 20%;
+    color: white;
+    background-color: #5d5da1;
+    border: 1px solid white;         /* Remove a borda */
+    padding: 5px 5px;   /* Adiciona um espaçamento interno opcional */
+    font-size: 12px;      /* Ajusta o tamanho da fonte */
+    cursor: pointer;      /* Mantém o cursor como um ponteiro */
+    outline: none;        /* Remove a borda ao focar (evita efeito azul no Chrome) */
+    box-shadow: none;  
+}
+.null {
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .little-circle {
