@@ -92,14 +92,16 @@
 }
 
 .history {
+    margin-top: 2px;
     display: flex;
-    flex-grow: 5;
     flex-direction: row;
     justify-content: left;
-    align-items: left;
+    align-items: center;
     width: 100%;
     grid-column: span 3;
-    border: 1px solid #0000FF;
+    border-bottom: 1px solid #0000FF;
+    border-left: 1px solid #0000FF;
+    border-right: 1px solid #0000FF;
 }
 
 .prev, .next {
@@ -114,11 +116,12 @@
     outline: none;        /* Remove a borda ao focar (evita efeito azul no Chrome) */
     box-shadow: none;  
 }
-.null {
+.history-title {
     width: 20%;
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-grow: 3;
 }
 
 .little-circle {

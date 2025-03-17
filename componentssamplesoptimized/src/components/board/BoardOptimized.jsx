@@ -8,6 +8,24 @@ export function BoardOptimized() {
   const [winner, setWinner] = useState(null);
   const [score, setScore] = useState({ player1: 0, player2: 0 });
   const [countGame, setCountGame] = useState(0);
+  const [history, setHistory] = useState(Array({}));
+
+  const roundFactory = () => {
+    return {
+        player,
+        winner,
+        score,
+        countGame,
+        board,
+    }
+  }
+  
+  const addHistory = () => {
+    let prevHistory = [...history];
+    prevHistory.push(roundFactory());
+    setHistory(prevHistory);
+    console.log(history);
+  }
 
   useEffect(() => {
     const win = checkWinner();
@@ -57,6 +75,7 @@ export function BoardOptimized() {
     if (countGame > 2 || score.player1 === 2 || score.player2 === 2) {
       return;
     }
+    addHistory();
     board.forEach((cell) => {
       if (cell?.reset) cell.reset();
     });
@@ -66,6 +85,7 @@ export function BoardOptimized() {
   };
 
   const resetGame = () => {
+    addHistory();
     setScore({ player1: 0, player2: 0 });
     setCountGame(0);
     clearBoard();
@@ -123,13 +143,11 @@ export function BoardOptimized() {
           </button>
         </div>
         <div className="history">
-          <button className="prev" onClick={resetGame}>
+          <button className="prev" onClick={() => null}>
             Prev
           </button>
-          <div className="null"></div>
-          <div className="null">History</div>
-          <div className="null"></div>
-          <button className="next" onClick={clearBoard}>
+          <div className="history-title">History</div>
+          <button className="next" onClick={() => null}>
             Next'
           </button>
         </div>
