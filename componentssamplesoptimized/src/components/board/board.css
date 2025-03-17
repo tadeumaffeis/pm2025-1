@@ -47,7 +47,7 @@
 }
 
 .score .round {
-    border: 2px solid #11111a;
+    border: 1px solid #0000FF;
     margin-top: 1px;
     margin-bottom: 1px;
 }
@@ -78,6 +78,11 @@
     border: 1px solid #0000FF;
 }
 
+.box {
+    grid-column: span 3;
+    padding: 2px;
+}
+
 .button {
     margin: 1px;
     width: 100%;
@@ -102,6 +107,7 @@
     border-bottom: 1px solid #0000FF;
     border-left: 1px solid #0000FF;
     border-right: 1px solid #0000FF;
+    background-color: #e8e8fb;
 }
 
 .prev, .next {

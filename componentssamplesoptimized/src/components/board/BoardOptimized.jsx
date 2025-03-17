@@ -12,20 +12,20 @@ export function BoardOptimized() {
 
   const roundFactory = () => {
     return {
-        player,
-        winner,
-        score,
-        countGame,
-        board,
-    }
-  }
-  
+      player,
+      winner,
+      score,
+      countGame,
+      board,
+    };
+  };
+
   const addHistory = () => {
     let prevHistory = [...history];
     prevHistory.push(roundFactory());
     setHistory(prevHistory);
     console.log(history);
-  }
+  };
 
   useEffect(() => {
     const win = checkWinner();
@@ -96,7 +96,7 @@ export function BoardOptimized() {
       <div className="board">
         <div className="score">
           <div className="score-title">
-            <div className="score-label-title">Placar:</div>
+            <div className="score-label-title">Placar</div>
           </div>
           <div className="round">
             <div className="round-label">Jogador 1 (O): </div>
@@ -107,23 +107,26 @@ export function BoardOptimized() {
             <div className="round-right-label">{score.player2}</div>
           </div>
         </div>
-        <div className="round">
-          <div className="round-label">Jogada:</div>
-          {player === 0 ? (
-            <div className="little-circle" />
-          ) : (
-            <div className="x-little-shape" />
-          )}
-        </div>
-        <div className="round">
-          <div className="round-label">Vencedor:</div>
-          {winner === null ? (
-            <div />
-          ) : winner === 0 ? (
-            <div className="little-circle" />
-          ) : (
-            <div className="x-little-shape" />
-          )}
+        <div className="box">
+          <div className="round">
+            <div className="round-label">Jogada:</div>
+            {player === 0 ? (
+              <div className="little-circle" />
+            ) : (
+              <div className="x-little-shape" />
+            )}
+          </div>
+
+          <div className="round">
+            <div className="round-label">Vencedor:</div>
+            {winner === null ? (
+              <div />
+            ) : winner === 0 ? (
+              <div className="little-circle" />
+            ) : (
+              <div className="x-little-shape" />
+            )}
+          </div>
         </div>
         {board.map((obj, index) => (
           <CellOptimized
