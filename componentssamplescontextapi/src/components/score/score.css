@@ -1,0 +1,49 @@
+.round {
+    display: flex;
+    height: 40px;
+    grid-column: span 3;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+    padding: 10px;
+    color: #494955;
+    border: 1px solid #0000FF;
+}
+.round-label {
+    width: 30%;
+    align-items: center;
+        color: #0000ff;
+}
+
+.round-right-label {
+    width: 70%;
+    align-items: right;
+    text-align: right;
+    text-shadow: #5d5da1;
+    font-weight: bold;
+}
+
+.right-position
+{
+    align-self: right;
+    text-align: right;
+    justify-content: right;
+    width: 20%;
+}
+
+.score-title {
+    width: 100%;
+    grid-column: span 3;
+    border: 1px solid #0000FF;
+    flex-direction: row;
+}
+.score-label-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #dbdbe2;
+    background-color: #5d5da1;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 3px;
+}

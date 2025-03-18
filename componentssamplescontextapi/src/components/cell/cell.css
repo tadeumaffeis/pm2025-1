@@ -1,0 +1,50 @@
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #0000FF;
+    width: 100px;
+    height: 100px;
+    font-family: arial;
+    font-size: 30px;
+}
+
+.circle {
+    width: 50px; /* Largura da div */
+    height: 50px; /* Altura igual à largura para manter o círculo */
+    border-radius: 50%; /* Torna a div circular */
+    border: 3px solid blue; /* Cor e espessura da borda */
+    /*background-color: lightgray; /* Cor de fundo opcional */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+
+.x-shape {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.x-shape::before,
+.x-shape::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px; /* Espessura da borda */
+    height: 100%;
+    background-color: blue; /* Cor da borda */
+    transform-origin: center;
+}
+
+.x-shape::before {
+    transform: rotate(45deg);
+}
+
+.x-shape::after {
+    transform: rotate(-45deg);
+}
