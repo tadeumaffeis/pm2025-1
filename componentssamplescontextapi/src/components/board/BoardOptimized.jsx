@@ -3,6 +3,7 @@ import { ComponentsSampleContext } from '../context/ComponentsSampleContext'; //
 import CellOptimized from '../cell/CellOptimized.jsx';
 import './board.css';
 import Score from '../score/score.jsx';
+import Winner from '../winner/winner.jsx';
 
 export function BoardOptimized() {
     //const [board, setBoard] = useState(Array(9).fill(null));
@@ -76,14 +77,7 @@ export function BoardOptimized() {
         <div className="container">
             <div className="board">
                 <Score score={score} player={ player} />
-                <div className="round"><div className="round-label">Vencedor:</div>   
-                    { winner === null 
-                    ? <div/> 
-                    : winner === 0 
-                        ? <div className="little-circle"/>  
-                        : <div className="x-little-shape"/> 
-                    }
-                </div>
+                <Winner winner={winner} />
                 {board.map((obj, index) => (
                     <CellOptimized
                         key={index}

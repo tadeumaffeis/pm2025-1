@@ -12,9 +12,9 @@ export const ScoreRound = ({ label, score, icon, round }) => {
             <div className="right-position">
             {
                 icon === 'GamerX' 
-                    ? <ClearRoundedIcon />
+                    ? <ClearRoundedIcon className='x-icon'/>
                     : icon === 'GamerO'
-                        ? <RadioButtonUncheckedRoundedIcon />
+                        ? <RadioButtonUncheckedRoundedIcon className='o-icon'/>
                         : <div />
             }
             </div>
