@@ -5,12 +5,15 @@ import './score.css';
 
 // npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 
-export const Score = ( score ) => {
+export const Score = ({ score, player }) => {
+    const isPlayer = [player === 0, player === 1];
+    console.log("Player: ", player);
+    console.log("isPlayer: ", isPlayer);
     return (
         <>
             <ScoreTitle label="Placar" />
-            <ScoreRound label="Jogador" score={score.player1} icon='GamerO' />
-            <ScoreRound label="Jogador" score={score.player2} icon='GamerX' /> 
+            <ScoreRound label="Jogador" score={score.player1} icon='GamerO' round={isPlayer[0]} />
+            <ScoreRound label="Jogador" score={score.player2} icon='GamerX' round={isPlayer[1]} /> 
         </>
     );
 }
@@ -20,6 +23,7 @@ Score.propTypes = {
         player1: PropTypes.number.isRequired,
         player2: PropTypes.number.isRequired,
     }).isRequired,
+    player: PropTypes.number.isRequired,
 };
 
 export default Score;

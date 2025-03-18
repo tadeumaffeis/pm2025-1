@@ -75,13 +75,7 @@ export function BoardOptimized() {
     return (
         <div className="container">
             <div className="board">
-                <Score score={score} />
-                <div className="round"><div className="round-label">Jogada:</div> 
-                    { player === 0 
-                    ? <div className="little-circle"/> 
-                    : <div className="x-little-shape"/> 
-                    }
-                </div>
+                <Score score={score} player={ player} />
                 <div className="round"><div className="round-label">Vencedor:</div>   
                     { winner === null 
                     ? <div/> 
