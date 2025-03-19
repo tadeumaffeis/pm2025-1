@@ -9,6 +9,20 @@
     font-size: 30px;
 }
 
+.x-icon {
+    color: #0000ff;
+    font-size: '40px';
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+    padding-left: 10px;;
+}
+
+.o-icon {
+    color: #0000ff;
+    font-size: "40px";
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+    padding-left: 10px;;
+}
+
 .circle {
     width: 50px; /* Largura da div */
     height: 50px; /* Altura igual à largura para manter o círculo */

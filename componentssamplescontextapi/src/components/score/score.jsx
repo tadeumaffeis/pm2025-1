@@ -7,8 +7,6 @@ import './score.css';
 
 export const Score = ({ score, player }) => {
     const isPlayer = [player === 0, player === 1];
-    console.log("Player: ", player);
-    console.log("isPlayer: ", isPlayer);
     return (
         <>
             <ScoreTitle label="Placar" />

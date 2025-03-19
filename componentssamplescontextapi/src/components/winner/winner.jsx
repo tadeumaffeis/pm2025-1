@@ -11,8 +11,8 @@ export const Winner = ({ winner }) => {
                 {winner === null
                     ? <div />
                     : winner === 0
-                        ? <RadioButtonUncheckedRoundedIcon className='icon'/>
-                        : <ClearRoundedIcon className='icon'/>
+                        ? <RadioButtonUncheckedRoundedIcon sx={{ fontSize: 40 }} className='icon'/>
+                        : <ClearRoundedIcon sx={{ fontSize: 45 }} className='icon'/>
                 }
             </div>
         </div>    

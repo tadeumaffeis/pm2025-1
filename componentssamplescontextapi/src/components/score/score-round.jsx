@@ -12,16 +12,16 @@ export const ScoreRound = ({ label, score, icon, round }) => {
             <div className="right-position">
             {
                 icon === 'GamerX' 
-                    ? <ClearRoundedIcon className='x-icon'/>
+                    ? <ClearRoundedIcon sx={{ fontSize: 38 }} className='x-icon'/>
                     : icon === 'GamerO'
-                        ? <RadioButtonUncheckedRoundedIcon className='o-icon'/>
+                        ? <RadioButtonUncheckedRoundedIcon sx={{ fontSize: 30 }} className='o-icon'/>
                         : <div />
             }
             </div>
             <div className="right-position">
             {
                 round && round === true
-                    ? <div className="round-right-label"><ArrowBackIosIcon className="arrow" /></div>
+                    ? <div className="round-right-label"><ArrowBackIosIcon sx={{ fontSize: 25 }} className="arrow" /></div>
                     : <div />
                 }
             </div>
