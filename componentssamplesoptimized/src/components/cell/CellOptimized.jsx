@@ -18,6 +18,7 @@ export function CellOptimized({ index, cell, gameover, onChange }) {
     };
 
     const getPlayer = () => (cellObj ? cellObj.cell : null);
+    const setCell = (newCell) => setCellObj(newCell);
     const resetObj = () => setCellObj(cellFactory());
 
     const handleClick = () => {
@@ -27,6 +28,7 @@ export function CellOptimized({ index, cell, gameover, onChange }) {
             index,
             cell,
             getPlayer: () => cell?.player ?? null,
+            setCell: (newCell) => setCell(newCell),
             reset: () => resetObj(),
         };
         setCellObj(newCellObj);
@@ -59,5 +61,6 @@ function cellFactory() {
         cell,
         getPlayer: () => null,
         getCell: () => null,
+        setCell: () => null,
     };
 }   
