@@ -1,0 +1,52 @@
+Mysql
+-----
+
+Prompt WSL
+
+mysql 
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'A12345678a';
+FLUSH PRIVILEGES;
+
+Posttgresql
+-----------
+Prompt WSL
+
+sudo -i -u postgres
+psql
+\password postgres
+Enter new password:
+Enter it again:
+\q
+
+
+Mysql e Postgresql
+------------------
+
+CREATE DATABASE pmdb;
+
+Mysql
+-----
+CREATE TABLE instituicao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cidade VARCHAR(255),
+    estado VARCHAR(2)
+);
+
+Postgresql
+----------
+
+CREATE TABLE instituicao (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cidade VARCHAR(255),
+    estado CHAR(2)
+);
+
+MongoDB
+-------
+use pmdb;
+
+db.createCollection("instituicao")
+
