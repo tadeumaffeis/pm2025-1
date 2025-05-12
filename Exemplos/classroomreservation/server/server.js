@@ -1,10 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const app = express();
+
+app.use(cors()); // Libera todas as origens
+
+// ou configure apenas para o frontend específico:
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
 
 // Importar as rotas
 const instituicaoRoutes = require('./routes/instituicao');
 
-const app = express();
 app.use(bodyParser.json());
 
 // Usar as rotas
