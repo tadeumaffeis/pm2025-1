@@ -22,7 +22,8 @@ const ViewCurso = sequelize.define('ViewCurso', {
       type: DataTypes.STRING,
       allowNull: true
     }
-  }, {
+},
+  {
     tableName: 'viewcurso',
     timestamps: false,
     freezeTableName: true
