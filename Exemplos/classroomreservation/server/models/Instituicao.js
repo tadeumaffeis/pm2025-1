@@ -4,11 +4,10 @@ const postgresDb = new Sequelize('pmdb', 'postgres', 'A12345678a', {
   host: 'localhost',
   dialect: 'postgres'
 });
-
 const Instituicao = postgresDb.define('instituicao', {
   id: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    primaryKey: true
   },
   nome: {
     type: DataTypes.STRING,
@@ -22,4 +21,5 @@ const Instituicao = postgresDb.define('instituicao', {
   }
 );
 
+postgresDb.sync();
 module.exports = Instituicao;

@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const viewCursoRoute = require('./routes/ViewCursoRoute.js')
+const instituicaoRoute = require('./routes/instituicaoRoute.js')
 //const cors = require('cors');
 
 const app = express();
@@ -20,7 +21,8 @@ app.use(bodyParser.json());
 // Usar as rotas
 //app.use('/instituicao', instituicaoRoutes);
 
-app.use('/curso', viewCursoRoute );
+app.use('/curso', viewCursoRoute);
+app.use('/instituicao', instituicaoRoute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));

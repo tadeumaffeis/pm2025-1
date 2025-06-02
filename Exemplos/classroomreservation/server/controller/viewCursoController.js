@@ -27,7 +27,26 @@ const listarCursos = async (req, res) => {
   } 
 }
 
+// Atualizar
+const atualizarCurso = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [linhasAfetadas] = await ViewCurso.update(req.body, {
+      where: { id }
+    });
+
+    if (linhasAfetadas === 0) {
+      return res.status(404).json({ message: 'Instituição não encontrada'});
+    }
+
+    res.json({ message: 'Instituição atualizada com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
     inserirCurso,
-    listarCursos
+    listarCursos,
+    atualizarCurso
 };

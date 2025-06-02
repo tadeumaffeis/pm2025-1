@@ -1,11 +1,11 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('pmdb', 'postgres', 'A12345678a', {
+const postgresDb = new Sequelize('pmdb', 'postgres', 'A12345678a', {
   host: 'localhost',
   dialect: 'postgres'
 });
 
-const ViewCurso = sequelize.define('ViewCurso', {
+const ViewCurso = postgresDb.define('ViewCurso', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true
@@ -29,6 +29,7 @@ const ViewCurso = sequelize.define('ViewCurso', {
     freezeTableName: true
   });
 
+postgresDb.sync();
 module.exports = ViewCurso;
 
 
