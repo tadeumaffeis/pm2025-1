@@ -31,6 +31,7 @@ const listarCursos = async (req, res) => {
 const atualizarCurso = async (req, res) => {
   try {
     const { id } = req.params;
+    console.assert(req.body, 'Dados para atualização não fornecidos');
     const [linhasAfetadas] = await ViewCurso.update(req.body, {
       where: { id }
     });
@@ -45,8 +46,27 @@ const atualizarCurso = async (req, res) => {
   }
 };
 
+// Deletar
+const removerCurso = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletado = await ViewCurso.destroy({
+      where: { id }
+    });
+
+    if (deletado === 0) {
+      return res.status(404).json({ message: 'Curso não encontrado' });
+    }
+
+    res.json({ message: 'Curso deletado com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
     inserirCurso,
     listarCursos,
-    atualizarCurso
+    atualizarCurso,
+    removerCurso
 };
