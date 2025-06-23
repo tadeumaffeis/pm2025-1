@@ -2,7 +2,7 @@
 import InstituicoesPage from './pages/InstituicoesPage';
 
 function App() {
-  return <InstituicoesPage />;
+  return <Login />;
 }
 
 export default App;

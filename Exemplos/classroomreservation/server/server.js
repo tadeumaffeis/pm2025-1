@@ -3,11 +3,11 @@ const bodyParser = require('body-parser');
 const viewCursoRoute = require('./routes/ViewCursoRoute.js')
 const authRoute = require('./routes/authRoute.js')
 const instituicaoRoute = require('./routes/instituicaoRoute.js')
-//const cors = require('cors');
+const cors = require('cors');
 
 const app = express();
 
-//app.use(cors()); // Libera todas as origens
+app.use(cors()); // Libera todas as origens
 
 // ou configure apenas para o frontend específico:
 //app.use(cors({
