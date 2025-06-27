@@ -9,8 +9,7 @@ RUN chmod -R +rwx /config && \
     cp /config/mongod.conf /etc/mongod.conf
 
 # Cria diretório de dados do MongoDB
-RUN mkdir -p /data/db && \
-    chown -R mongodb:mongodb /data/db
+RUN if [ ! -d /data/db ]; then mkdir -p /data/db && chown -R mongodb:mongodb /data/db; fi
 
 # Define o volume para persistência de dados (opcional)
 VOLUME ["/data/db"]

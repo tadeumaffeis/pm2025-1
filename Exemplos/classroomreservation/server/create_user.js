@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
-const User = require('./models/User');
 const jwt = require('jsonwebtoken');
+const User = require('./models/User');
+const connectDB = require('./db'); // 👈 conexão centralizada
 require('dotenv').config();
 
-mongoose.connect('mongodb://localhost:27017/pmdb');
-
 (async () => {
+  //await connectDB(); // ✅ conecta ao Mongo
+
   const hashedAt = await bcrypt.hash('1234', 10);
   const userAt = 'tadeu.maffeis@gmail.com';
   const expirationDate = new Date(Date.now() + 3600000);
@@ -14,13 +14,13 @@ mongoose.connect('mongodb://localhost:27017/pmdb');
     expiresIn: process.env.JWT_EXPIRATION
   });
 
-  console.log('JWT_SECRET:', process.env.JWT_SECRET);
-
-  await User.create({ 
-    username: userAt, 
-    password: hashedAt, 
+  await User.create({
+    username: userAt,
+    password: hashedAt,
     token: tokenAt,
-    tokenExpiration: expirationDate  });
+    tokenExpiration: expirationDate
+  });
+
   console.log('Usuário criado');
   process.exit();
-})();   
+})();

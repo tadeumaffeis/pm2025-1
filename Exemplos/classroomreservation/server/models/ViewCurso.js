@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 const postgresDb = new Sequelize('pmdb', 'postgres', 'A12345678a', {
-  host: 'localhost',
+  host: 'postgresql',
   dialect: 'postgres'
 });
 
