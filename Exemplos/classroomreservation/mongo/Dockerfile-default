@@ -5,8 +5,7 @@ RUN id -u mongodb &>/dev/null || useradd -r -s /bin/false mongodb
 
 # Copia os arquivos de configuração
 COPY config /config
-RUN chmod -R +rwx /config && \
-    cp /config/mongod.conf /etc/mongod.conf
+RUN chmod -R +rwx /config && cp /config/mongod.conf /etc/mongod.conf
 
 # Cria diretório de dados do MongoDB
 RUN if [ ! -d /data/db ]; then mkdir -p /data/db && chown -R mongodb:mongodb /data/db; fi
