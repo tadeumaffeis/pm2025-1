@@ -1,0 +1,223 @@
+    1  exit
+    2  export PS1="$> "
+    3  pwd
+    4  cat /etc/passwd
+    5  cat /etc/groups
+    6  cat /etc/group
+    7  cat /etc/group | grep sudo
+    8  sudo update -y
+    9  sudo apt update -y
+   10  sudo apt upgrade -y
+   11  sudo apt install -y ca-certificates curl gnupg lsb-release
+   12  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+   13  curl -fsSL https://download.docker.com/linux/ubuntu/gpg 
+   14  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   15  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" 
+   16  lsb-release
+   17  lsb-release -cs
+   18  uname
+   19  uname -a
+   20  lsb2_release -cs
+   21  lsb_release -cs
+   22  sudo apt update && sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   23  usermode
+   24  usermod
+   25  echo $USER
+   26  cat /etc/group | grep docker
+   27  sudo usermod -aG docker $USER
+   28  cat /etc/group | grep docker
+   29  docker ps
+   30  exit
+   31  dockerps
+   32  docker ps
+   33  export PS1="$> "
+   34  pwd
+   35  ls
+   36  cd mongo
+   37  pwd
+   38  ls
+   39  cat Dockerfile
+   40  cat Dockerfile-default 
+   41  id -u $USER
+   42  id -u sys
+   43  id -u sysadm
+   44  id -u mongodb
+   45  pwd
+   46  docker buildx build -f Dockerfile-default -t pm2025-1-mongo .
+   47  docker images
+   48  docker run --name mongo -p 27017:27017 -t pm2025-1-mongo 
+   49  docker ps
+   50  docker ps -a
+   51  dcoker start mongo
+   52  docker start mongo
+   53  docker ps
+   54  docker exec -it mongo bash
+   55  ps aux
+   56  docker ps
+   57  services
+   58  service
+   59  service --status-all
+   60  ps aux
+   61  pwd
+   62  cd ..
+   63  ls
+   64  cd postgresql/
+   65  pwd
+   66  history
+   67  docker buildx build -t pm2025-1-postgresql .
+   68  history
+   69  docker run -d --name postgresql -p 5432:5432 -t pm2025-1-postgresql:1.0
+   70  docker ps
+   71  docker run -d --name postgresql -p 5432:5432 -t pm2025-1-postgresql
+   72  docker ps
+   73  docker exec -it postgresql bash
+   74  docker ps
+   75  docker stop mongo
+   76  docker stop postgresql
+   77  docker ps
+   78  docker start mongo
+   79  docker restart mongo
+   80  docker ps
+   81  docker restart postgresql
+   82  docker ps
+   83  docker stop mongo
+   84  docker stop postgresql
+   85  docker ps
+   86  docker restart postgresql
+   87  docker ps
+   88  docker exec -it postgresql bash
+   89  docker ps
+   90  docker exec -it postgresql bash
+   91  docker restart postgresql
+   92  exit
+   93  export PS1="$> "
+   94  pwd
+   95  cd mongo
+   96  pwd
+   97  ls
+   98  nano Dockerfile-default 
+   99  history
+  100  docker buildx build -f Dockerfile-default -t pm2025-1-mongo:1.0 .
+  101  docker images
+  102  history
+  103  docker run --name mongo -p 27017:27017 -t pm2025-1-mongo:1.0
+  104  docker run --name mongo-1.0 -p 27017:27017 -t pm2025-1-mongo:1.0
+  105  docker ps
+  106  docler start mongo-1.0
+  107  docker start mongo-1.0
+  108  docker ps
+  109  docker rm mongo-1.0
+  110  docker stop mongo-1.0
+  111  docker rm mongo-1.0
+  112  docker run -d --name mongo-1.0 -p 27100:27017 -t pm2025-1-mongo:1.0
+  113  docker ps
+  114  docker start mongo
+  115  docker ps
+  116  docker stop mongo
+  117  docker stop mongo-1.0
+  118  docker ps -a
+  119  docker ps 
+  120  pwd
+  121  history
+  122  cd ../postgresql/
+  123  nano Dockerfile 
+  124  pwd
+  125  docker buildx build -t pm2025-1-postgresql:1.0 .
+  126  cd ..
+  127  ls
+  128  cd server/
+  129  pwd
+  130  ls
+  131  nano index.js 
+  132  code .
+  133  export PS1="$> "
+  134  cd server/
+  135  nano Dockerfile 
+  136  pwd
+  137  docker buildx build -t pm2025-1-backend .
+  138  ls
+  139  docker images
+  140  docker run -d --name backend -p 3000:3000 -t pm2025-1-backend 
+  141  docer ps
+  142  docker ps
+  143  docker logs backend
+  144  docker start postgresql
+  145  docker ps
+  146  docker run -d --name backend -p 3000:3000 -t pm2025-1-backend 
+  147  docker start backend
+  148  docker ps
+  149  docker logs postgrsql
+  150  docker logs postgrssql
+  151  docker logs postgresql
+  152  docker exec -itpostgresql bash
+  153  docker exec -it postgresql bash
+  154  ps aux
+  155  docker logs backend
+  156  ifconfig
+  157  sudo apt install iproute2
+  158  iproute
+  159  ip
+  160  docker network create pm2025-1-network --name pmnet
+  161  docker network create pm2025-1-network 
+  162  docker network ls
+  163  docker rm mongo
+  164  docker rm backend
+  165  docker rm postgresql
+  166  docker ps
+  167  docker stop postgresql
+  168  docker rm postgresql
+  169  docker ps -a
+  170  docker rm mongo:1.0
+  171  docker rm mongo-1.0
+  172  docker ps -a
+  173  pwd
+  174  cd ..
+  175  cd mongo
+  176  pwd
+  177  hisotry
+  178  history 
+  179  docker run -d --name mongo -network pm2025-1-network  -t pm2025-1-mongo
+  180  docker run -d --name mongo -n pm2025-1-network -t pm2025-1-mongo
+  181  docker run -d --name mongo --network pm2025-1-network -t pm2025-1-mongo
+  182  docker ps
+  183  docker run -d --name postgresql --network pm2025-1-network -t pm2025-1-postgresql
+  184  docker ps
+  185  docker run -d --name backend --network pm2025-1-network -p 3000:3000 -t pm2025-1-backend
+  186  docker ps
+  187  docker logs mongo
+  188  docker logs postgresql
+  189  docker logs backend
+  190  curl http://localhost:3000
+  191  curl http://localhost:3000/api/instituicao/listar
+  192  curl http://localhost:3000/api/curso
+  193  curl http://localhost:3000/api/curso/listar
+  194  cd ..
+  195  pwd
+  196  cd client/
+  197  nano Dockerfile 
+  198  history
+  199  nano Dockerfile 
+  200  docker exec -it mongo bash
+  201  nano Dockerfile 
+  202  cd client/
+  203  export PS1="$> "
+  204  docker buildx build -t pm2025-1-frontend .
+  205  docker ps
+  206  docker start mongo
+  207  docker start postgesql
+  208  docker start postgresql
+  209  docker rm backend
+  210  docker ps -a
+  211  history
+  212  docker run -d --name backend --network pm2025-1-network -t pm2025-1-backend
+  213  docker ps
+  214  docker run -d --name frontend --network pm2025-1-frontend -p 80:80 -t pm2025-1-backend
+  215  docker run -d --name frontend --network pm2025-1-network -p 80:80 -t pm2025-1-frontend
+  216  docker rm frontend
+  217  docker run -d --name frontend --network pm2025-1-network -p 80:80 -t pm2025-1-frontend
+  218  docker ps
+  219  curl http://localhost:3000/api/curso/listar
+  220  curl http://localhost
+  221  history
+  222  pwd
+  223  history > ../history

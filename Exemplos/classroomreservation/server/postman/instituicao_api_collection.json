@@ -1,0 +1,328 @@
+{
+  "info": {
+    "name": "Instituicao API - CRUD",
+    "_postman_id": "a1b2c3d4-5678-9101-1121-314151617181",
+    "description": "Cole\u00e7\u00e3o para testar a API RESTful da institui\u00e7\u00e3o em MySQL, PostgreSQL e MongoDB.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Criar Instituicao - MYSQL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/mysql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "mysql"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Instituicao Teste\",\n  \"cidade\": \"Cidade Teste\",\n  \"estado\": \"ST\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Listar Instituicao - MYSQL",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/mysql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "mysql"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Atualizar Instituicao - MYSQL",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/mysql/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "mysql",
+            ":id"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Instituicao Atualizada\",\n  \"cidade\": \"Cidade Nova\",\n  \"estado\": \"SN\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Deletar Instituicao - MYSQL",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/mysql/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "mysql",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Criar Instituicao - POSTGRES",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/postgres",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "postgres"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Instituicao Teste\",\n  \"cidade\": \"Cidade Teste\",\n  \"estado\": \"ST\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Listar Instituicao - POSTGRES",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/postgres",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "postgres"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Atualizar Instituicao - POSTGRES",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/postgres/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "postgres",
+            ":id"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Instituicao Atualizada\",\n  \"cidade\": \"Cidade Nova\",\n  \"estado\": \"SN\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Deletar Instituicao - POSTGRES",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/postgres/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "postgres",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Criar Instituicao - MONGO",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/mongo",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "mongo"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Instituicao Teste\",\n  \"cidade\": \"Cidade Teste\",\n  \"estado\": \"ST\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Listar Instituicao - MONGO",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/mongo",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "mongo"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Atualizar Instituicao - MONGO",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/mongo/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "mongo",
+            ":id"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Instituicao Atualizada\",\n  \"cidade\": \"Cidade Nova\",\n  \"estado\": \"SN\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Deletar Instituicao - MONGO",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/instituicao/mongo/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "instituicao",
+            "mongo",
+            ":id"
+          ]
+        }
+      }
+    }
+  ]
+}

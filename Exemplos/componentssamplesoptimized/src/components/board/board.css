@@ -1,0 +1,172 @@
+.container {
+    display: flex;
+    flex-direction: column; /* Ajusta os filhos verticalmente */
+    align-items: center; /* Centraliza os filhos dentro da div */
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    font: 16px Arial, sans-serif;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0px;
+    border: 1px solid #0000FF;
+    margin-bottom: 5px;
+}
+
+.round {
+    display: flex;
+    height: 40px;
+    grid-column: span 3;
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    font-size: 20px;
+    padding: 10px;
+    color: #494955;
+    border: 1px solid #0000FF;
+}
+.round-label {
+    width: 80%;
+    align-items: center;
+}
+
+.round-right-label {
+    width: 20%;
+    align-items: right;
+    text-align: right;
+    text-shadow: #5d5da1;
+    font-weight: bold;
+}
+.score {
+    grid-column: span 3;
+    padding: 2px;
+}
+
+.score .round {
+    border: 1px solid #0000FF;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.score-title {
+    width: 100%;
+    grid-column: span 3;
+    border: 1px solid #11111a;
+    flex-direction: row;
+}
+.score-label-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #dbdbe2;
+    background-color: #5d5da1;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 3px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    width: 100%;
+    grid-column: span 3;
+    border: 1px solid #0000FF;
+}
+
+.box {
+    grid-column: span 3;
+    padding: 2px;
+}
+
+.button {
+    margin: 1px;
+    width: 100%;
+    color: white;
+    background-color: #5d5da1;
+    border: 1px solid white;         /* Remove a borda */
+    padding: 5px 5px;   /* Adiciona um espaçamento interno opcional */
+    font-size: 12px;      /* Ajusta o tamanho da fonte */
+    cursor: pointer;      /* Mantém o cursor como um ponteiro */
+    outline: none;        /* Remove a borda ao focar (evita efeito azul no Chrome) */
+    box-shadow: none;  
+}
+
+.history {
+    margin-top: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    grid-column: span 3;
+    border-bottom: 1px solid #0000FF;
+    border-left: 1px solid #0000FF;
+    border-right: 1px solid #0000FF;
+    background-color: #e8e8fb;
+}
+
+.prev, .next {
+    margin: 1px;
+    width: 20%;
+    color: white;
+    background-color: #5d5da1;
+    border: 1px solid white;         /* Remove a borda */
+    padding: 5px 5px;   /* Adiciona um espaçamento interno opcional */
+    font-size: 12px;      /* Ajusta o tamanho da fonte */
+    cursor: pointer;      /* Mantém o cursor como um ponteiro */
+    outline: none;        /* Remove a borda ao focar (evita efeito azul no Chrome) */
+    box-shadow: none;  
+}
+.history-title {
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-grow: 3;
+}
+
+.little-circle {
+    width: 30px; /* Largura da div */
+    height: 30px; /* Altura igual à largura para manter o círculo */
+    border-radius: 50%; /* Torna a div circular */
+    border: 3px solid blue; /* Cor e espessura da borda */
+    /*background-color: lightgray; /* Cor de fundo opcional */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+    margin: 5px;
+}
+
+.x-little-shape {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.x-little-shape::before,
+.x-little-shape::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px; /* Espessura da borda */
+    height: 100%;
+    background-color: blue; /* Cor da borda */
+    transform-origin: center;
+}
+
+.x-little-shape::before {
+    transform: rotate(45deg);
+}
+
+.x-little-shape::after {
+    transform: rotate(-45deg);
+}

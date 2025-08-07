@@ -1,0 +1,84 @@
+/* Ocupa 100% da tela e centraliza o conteúdo */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Alinha horizontalmente */
+    align-items: center;      /* Alinha verticalmente */
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    background-color: #eaeaea;
+}
+
+/* Sub-container centralizado e com tamanho máximo controlado */
+.sub-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px; /* Limita largura no centro */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: center; /* Alinha horizontalmente */
+    align-items: center;     /* Alinha verticalmente */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: blue;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.padding20 {
+    padding: 20px;
+}
+
+.margin20 {
+    margin: 20px;
+}
+
+.input-wrapper {
+    position: relative;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 16px 12px 8px;
+    background-color: white;
+}
+
+.input-wrapper label {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    background-color: white;
+    padding: 0 6px;
+    font-size: 14px;
+    color: #555;
+}
+
+.input-wrapper input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+    margin-top: 8px;
+}
+
+.submit-btn {
+    padding: 10px 16px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
