@@ -1,34 +1,94 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Button, IconButton, Menu, MenuItem, useMediaQuery, useTheme } from '@mui/material'
+import { AccountCircle, CloudUpload, Save, Add, Menu as MenuIcon } from '@mui/icons-material'
+import AssignmentModal from './components/AssignmentModal'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [anchorEl, setAnchorEl] = useState(null)
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
+  const handleOpenModal = () => setModalOpen(true)
+  const handleCloseModal = () => setModalOpen(false)
+  
+  const handleMenuOpen = (event) => setAnchorEl(event.currentTarget)
+  const handleMenuClose = () => setAnchorEl(null)
+
+  const handleMenuItemClick = (action) => {
+    handleMenuClose()
+    if (action === 'novo') handleOpenModal()
+  }
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app-container">
+      <header className="header">
+        <nav className="menu">
+          {isMobile ? (
+            <>
+              <IconButton
+                color="primary"
+                onClick={handleMenuOpen}
+                size="large"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <MenuItem onClick={() => handleMenuItemClick('novo')}>
+                  <Add sx={{ mr: 1 }} /> Novo
+                </MenuItem>
+                <MenuItem onClick={() => handleMenuItemClick('carregar')}>
+                  <CloudUpload sx={{ mr: 1 }} /> Carregar
+                </MenuItem>
+                <MenuItem onClick={() => handleMenuItemClick('salvar')}>
+                  <Save sx={{ mr: 1 }} /> Salvar
+                </MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <>
+              <Button
+                variant="contained"
+                startIcon={<Add />}
+                onClick={handleOpenModal}
+              >
+                Novo
+              </Button>
+              <Button
+                variant="contained"
+                startIcon={<CloudUpload />}
+              >
+                Carregar
+              </Button>
+              <Button
+                variant="contained"
+                startIcon={<Save />}
+              >
+                Salvar
+              </Button>
+            </>
+          )}
+        </nav>
+        <div className="login-icon">
+          <IconButton>
+            <AccountCircle sx={{ fontSize: '2.06rem' }} />
+          </IconButton>
+        </div>
+      </header>
+      
+      <main className="main-content">
+        {/* Área central vazia */}
+      </main>
+
+      <footer className="footer">
+        {/* Rodapé vazio */}
+      </footer>
+      <AssignmentModal open={modalOpen} handleClose={handleCloseModal} />
+    </div>
   )
 }
 
