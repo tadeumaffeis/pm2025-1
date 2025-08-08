@@ -1,7 +1,5 @@
 
 import { StringBuffer } from './StringBuffer.js';
-import fs from 'fs';
-import path from 'path';
 
 export class TaskInputOutput {
   constructor(input = null, output = null) {
@@ -18,12 +16,8 @@ export class TaskInputOutput {
   }
 
   readFile(filePath) {
-    try {
-      return new StringBuffer(fs.readFileSync(filePath, 'utf-8'));
-    } catch (err) {
-      console.error('Error reading file:', err);
-      return new StringBuffer();
-    }
+    // Em ambiente web, apenas armazena o caminho
+    return new StringBuffer(filePath);
   }
 
   setInputFile(filePath) {
@@ -37,11 +31,13 @@ export class TaskInputOutput {
   }
 
   getInputFileName() {
-    return this.inputFile ? path.basename(this.inputFile) : null;
+    if (!this.inputFile) return null;
+    return this.inputFile.split(/[\\/]/).pop();
   }
 
   getOutputFileName() {
-    return this.outputFile ? path.basename(this.outputFile) : null;
+    if (!this.outputFile) return null;
+    return this.outputFile.split(/[\\/]/).pop();
   }
 
   reset() {
@@ -80,11 +76,11 @@ export class TaskInputOutput {
   }
 
   string2Base64(str) {
-    return new StringBuffer(Buffer.from(str, 'utf-8').toString('hex'));
+    return new StringBuffer(btoa(str));
   }
 
-  base642String(hexStr) {
-    return new StringBuffer(Buffer.from(hexStr, 'hex').toString('utf-8'));
+  base642String(base64Str) {
+    return new StringBuffer(atob(base64Str));
   }
 
   toJsonArrayString() {
