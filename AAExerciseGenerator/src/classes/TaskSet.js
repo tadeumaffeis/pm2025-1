@@ -32,11 +32,11 @@ export class TaskSet {
     str = str.replace(/\\n/g, '/n');
     str = str.replace(/\\/g, '');
     str = str.replace(/\/n/g, '\\n');
-    str = str.replace(/\""/g, '"');
-    str = str.replace(/\"\[/g, '[');
+    str = str.replace(/\\""/g, '"');
+    str = str.replace(/\\"\[/g, '[');
     str = str.replace(/\]"/g, ']');
-    str = str.replace(/\"\{/g, '{');
-    str = str.replace(/\}\"/g, '}');
+    str = str.replace(/\\"\{/g, '{');
+    str = str.replace(/\}\\"/g, '}');
 
     return str;
   }
@@ -47,5 +47,10 @@ export class TaskSet {
 
   string2Json() {
     return JSON.parse(this.toJsonArrayString())[0];
+  }
+
+  clear() {
+    this.tasks = [];
+    this.index.clear();
   }
 }

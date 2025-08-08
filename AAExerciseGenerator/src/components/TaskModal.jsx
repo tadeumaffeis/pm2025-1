@@ -76,7 +76,7 @@ const defaultFormData = {
   outputFileContent: ''
 };
 
-const TaskModal = ({ open, handleClose, taskId, newTask, onSave }) => {
+const TaskModal = ({ open, handleClose, taskId, onSave }) => {
   const [formData, setFormData] = useState(defaultFormData);
   const [sourceFiles, setSourceFiles] = useState([]);
 

@@ -17,11 +17,18 @@ export class Index {
     return this.index;
   }
 
-  add(key, information) {
-    throw new Error("Method 'add' must be implemented by subclass");
+  // eslint-disable-next-line no-unused-vars
+  add(_key, _information) {
+    throw new Error("Method 'add' must be implemented by subclass" . _information);
   }
 
-  search(key) {
+  // eslint-disable-next-line no-unused-vars
+  search(_key) {
     throw new Error("Method 'search' must be implemented by subclass");
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  remove(_key) {
+    throw new Error("Method 'remove' must be implemented by subclass");
   }
 }

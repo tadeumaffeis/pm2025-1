@@ -70,26 +70,50 @@ const AssignmentModal = ({ open, handleClose }) => {
   const [taskModalOpen, setTaskModalOpen] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
   const [currentTaskId, setCurrentTaskId] = useState(null);
+  const [assignment, setAssignment] = useState(new Assignment());
 
   useEffect(() => {
     if (open) {
       setFormData(defaultFormData);
       setTasks([]);
+      setAssignment(new Assignment());
     }
   }, [open]);
 
   useEffect(() => {
-    console.log("current:" , currentTaskId);
+    console.log("Assignment:" , assignment.toJsonString());
     console.log("tasks:" , tasks);
-  }, [currentTaskId, tasks]);
+    console.log("JSON:" , assignment.toJsonString());
+
+  }, [currentTaskId, tasks, assignment]);
 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => {
+      const newFormData = {
+        ...prev,
+        [name]: value
+      };
+      
+      // Atualizar o objeto Assignment
+      switch (name) {
+        case 'id':
+          assignment.setId(value);
+          break;
+        case 'initialDate':
+          assignment.setInitialDate(new Date(value));
+          break;
+        case 'finalDate':
+          assignment.setFinalDate(new Date(value));
+          break;
+        case 'type':
+          assignment.setAssignmentType(value);
+          break;
+      }
+      
+      return newFormData;
+    });
   };
 
   const handleAddClick = () => {
@@ -108,6 +132,12 @@ const AssignmentModal = ({ open, handleClose }) => {
     if (taskIndex >= 0) {
       tasks.splice(taskIndex, 1);
       setTasks([...tasks]);
+      
+      // Atualizar o taskset do Assignment
+      const taskSet = assignment.getTaskSet();
+      taskSet.clear();
+      tasks.forEach(t => taskSet.add(t));
+      assignment.setTasks(taskSet);
     }
   };
 
@@ -129,6 +159,12 @@ const AssignmentModal = ({ open, handleClose }) => {
       tasks.push(task);
       setTasks([...tasks]);
     }
+    
+    // Atualizar o taskset do Assignment
+    const taskSet = assignment.getTaskSet();
+    taskSet.clear();
+    tasks.forEach(t => taskSet.add(t));
+    assignment.setTasks(taskSet);
   };
 
   const handleTaskSave = (task) => {
