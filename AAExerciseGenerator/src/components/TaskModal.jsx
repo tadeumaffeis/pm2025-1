@@ -158,7 +158,10 @@ const TaskModal = ({ open, handleClose, taskId, onSave }) => {
       if (file.path) {
         task.addCode({
           getName: () => file.path,
-          toJsonArrayString: () => JSON.stringify([{ name: file.path }])
+          toJsonArrayString: () => JSON.stringify([{ 
+            name: file.path,
+            content: file.content
+          }])
         });
       }
     });
@@ -170,20 +173,28 @@ const TaskModal = ({ open, handleClose, taskId, onSave }) => {
   const [taskDialogOpen, setTaskDialogOpen] = useState(false);
   const [currentFile, setCurrentFile] = useState(null);
 
-  const handleFileDialogSave = (filePath) => {
-    if (currentFile) {
-      const updatedFiles = sourceFiles.map(file =>
-        file.id === currentFile.id ? { ...file, path: filePath } : file
-      );
-      setSourceFiles(updatedFiles);
-    } else {
-      setSourceFiles(prev => [...prev, {
-        id: prev.length + 1,
-        path: filePath
-      }]);
-    }
-    setCurrentFile(null);
-    setTaskDialogOpen(false);
+  const handleFileDialogSave = (file) => {
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+      const content = e.target.result;
+      const newFile = {
+        id: currentFile?.id || Date.now().toString(),
+        path: getFilePath(file),
+        content: content
+      };
+
+      if (currentFile) {
+        setSourceFiles(sourceFiles.map(f => f.id === currentFile.id ? newFile : f));
+      } else {
+        setSourceFiles([...sourceFiles, newFile]);
+      }
+
+      setTaskDialogOpen(false);
+      setCurrentFile(null);
+    };
+    
+    reader.readAsText(file);
   };
 
   return (
@@ -389,7 +400,7 @@ const TaskModal = ({ open, handleClose, taskId, onSave }) => {
                     hidden
                     onChange={(e) => {
                       if (e.target.files.length > 0) {
-                        handleFileDialogSave(e.target.files[0].name);
+                        handleFileDialogSave(e.target.files[0]);
                       }
                     }}
                   />
