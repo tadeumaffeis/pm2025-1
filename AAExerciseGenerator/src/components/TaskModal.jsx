@@ -18,6 +18,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useState, Fragment, useEffect } from 'react';
 import { Task } from '../classes/Task.js';
 import { TaskInputOutput } from '../classes/TaskInputOutput.js';
+import { SourceCode } from '../classes/SourceCode.js';
 // Função auxiliar para obter o caminho do arquivo
 const getFilePath = (file) => {
   if (window.electron) {
@@ -80,6 +81,7 @@ const TaskModal = ({ open, handleClose, taskId, onSave }) => {
   const [formData, setFormData] = useState(defaultFormData);
   const [sourceFiles, setSourceFiles] = useState([]);
 
+  
   useEffect(() => {
     if (open) {
       setFormData({
@@ -154,16 +156,8 @@ const TaskModal = ({ open, handleClose, taskId, onSave }) => {
     task.addTaskInputOutput(taskIO);
     
     // Adicionar códigos fonte
-    sourceFiles.forEach(file => {
-      if (file.path) {
-        task.addCode({
-          getName: () => file.path,
-          toJsonArrayString: () => JSON.stringify([{ 
-            name: file.path,
-            content: file.content
-          }])
-        });
-      }
+    sourceFiles.forEach(sc => {
+        task.addCode(sc);
     });
     
     onSave(task);
@@ -178,11 +172,7 @@ const TaskModal = ({ open, handleClose, taskId, onSave }) => {
     
     reader.onload = (e) => {
       const content = e.target.result;
-      const newFile = {
-        id: currentFile?.id || Date.now().toString(),
-        path: getFilePath(file),
-        content: content
-      };
+      const newFile = new SourceCode(getFilePath(file), content, currentFile?.id);
 
       if (currentFile) {
         setSourceFiles(sourceFiles.map(f => f.id === currentFile.id ? newFile : f));

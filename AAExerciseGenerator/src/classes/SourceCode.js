@@ -1,31 +1,18 @@
 
-import fs from 'fs';
 import { StringBuffer } from './StringBuffer.js';
 
 export class SourceCode {
   static RO = 0;
   static RW = 1;
 
-  constructor(file = null) {
-    this.name = '';
+  constructor(name = '', content = '', id = null) {
+    this.id = id || Date.now().toString();
+    this.name = name;
     this.attribute = SourceCode.RW;
-    this.code = new StringBuffer();
-
-    if (file) {
-      this.name = file;
-      this.code = this.readFile(file);
-    }
+    this.code = content;
   }
 
-  readFile(filePath) {
-    try {
-      const content = fs.readFileSync(filePath, 'utf-8');
-      return new StringBuffer(content);
-    } catch (err) {
-      console.error(`Error reading file '${filePath}':`, err);
-      return new StringBuffer();
-    }
-  }
+
 
   setRO() {
     this.attribute = SourceCode.RO;
@@ -56,34 +43,48 @@ export class SourceCode {
   }
 
   getBase64Code() {
-    return this.string2Base64(this.code.toString());
+    return this.string2Base64(this.getCode());
   }
 
   str2Hex(str) {
-    return Buffer.from(str, 'utf-8').toString('hex');
+    // 1. Converte para bytes UTF-8
+    const encoder = new TextEncoder();
+    const bytes = encoder.encode(str);
+  
+    // 2. Converte para string hexadecimal
+    return Array.from(bytes)
+                .map(byte => byte.toString(16).padStart(2, '0'))
+                .join('');
   }
-
-  hex2Str(str) {
-    return Buffer.from(str, 'hex').toString('utf-8');
+  
+  hex2Str(hex) {
+    // 1. Divide o hex em pares de dois dígitos
+    const bytes = hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16));
+  
+    // 2. Converte para string usando UTF-8
+    const decoder = new TextDecoder();
+    return decoder.decode(new Uint8Array(bytes));
   }
 
   base642String(str) {
-    return new StringBuffer(this.hex2Str(str));
+    return this.hex2Str(str);
   }
 
   string2Base64(str) {
-    return new StringBuffer(this.str2Hex(str));
+    return this.str2Hex(str);
   }
 
   setCode(code) {
-    this.code = code;
+    this.code = this.str2Hex(code);
   }
 
   toJsonArrayString() {
-    return JSON.stringify([
+    const json =   JSON.stringify([
       { name: this.getName() },
       { attribute: this.getAttribute() },
-      { code: this.getBase64Code().toString() }
+      { code: this.getBase64Code()}
     ]);
+    console.log("CODE: ", this.str2Hex(this.getCode()));
+    return json;
   }
 }

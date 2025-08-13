@@ -92,10 +92,14 @@ export class Task {
     jsonArray.push({ url: this.getUrl() });
     jsonArray.push({ concluded: this.getConcluded() });
 
-    const jsonIO = [...this.ioFile].map(io => JSON.parse(io.toJsonArrayString()));
+    const jsonIO = [...this.ioFile].map(io => {
+      return JSON.parse(io.toJsonArrayString())
+    });
     jsonArray.push({ inputoutputs: jsonIO });
 
-    const jsonCodes = [...this.code].map(sc => JSON.parse(sc.toJsonArrayString()));
+    const jsonCodes = [...this.code].map(sc => {
+      return JSON.parse(sc.toJsonArrayString())
+    });
     jsonArray.push({ sourcecodes: jsonCodes });
 
     return JSON.stringify(jsonArray);

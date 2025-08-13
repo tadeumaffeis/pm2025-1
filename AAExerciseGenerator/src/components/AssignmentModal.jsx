@@ -81,7 +81,7 @@ const AssignmentModal = ({ open, handleClose }) => {
   }, [open]);
 
   useEffect(() => {
-    console.log("Assignment:" , assignment.toJsonString());
+    //console.log("Assignment:" , assignment.toJsonString());
     console.log("tasks:" , tasks);
     console.log("JSON:" , assignment.toJsonString());
 
@@ -143,7 +143,12 @@ const AssignmentModal = ({ open, handleClose }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // TODO: Implementar lógica de submissão
+    
+    if (!formData.id) {
+      alert('O campo Identificação é obrigatório.');
+      return;
+    }
+    
     console.log(formData);
     handleClose();
   };
@@ -196,6 +201,7 @@ const AssignmentModal = ({ open, handleClose }) => {
                   value={formData.id}
                   onChange={handleChange}
                   sx={textFieldStyle}
+                  required
                 />
               </FormControl>
             </Grid>

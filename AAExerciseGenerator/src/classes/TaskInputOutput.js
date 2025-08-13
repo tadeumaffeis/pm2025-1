@@ -17,7 +17,7 @@ export class TaskInputOutput {
 
   readFile(filePath) {
     // Em ambiente web, apenas armazena o caminho
-    return new StringBuffer(filePath);
+    return filePath;
   }
 
   setInputFile(filePath) {
@@ -54,7 +54,7 @@ export class TaskInputOutput {
   }
 
   getBase64Input() {
-    return this.string2Base64(this.input?.toString() || '');
+    return this.string2Base64(this.input || '');
   }
 
   setInput(input) {
@@ -67,7 +67,7 @@ export class TaskInputOutput {
   }
 
   getBase64Output() {
-    return this.string2Base64(this.output?.toString() || '');
+    return this.string2Base64(this.output || '');
   }
 
   setOutput(output) {
@@ -75,18 +75,46 @@ export class TaskInputOutput {
     this.output = output;
   }
 
-  string2Base64(str) {
-    return new StringBuffer(btoa(str));
+  //string2Base64(str) {
+  //  return new StringBuffer(btoa(str));
+  //}
+
+  //base642String(base64Str) {
+  //  return new StringBuffer(atob(base64Str));
+  //}
+
+  str2Hex(str) {
+    // 1. Converte para bytes UTF-8
+    const encoder = new TextEncoder();
+    const bytes = encoder.encode(str);
+  
+    // 2. Converte para string hexadecimal
+    return Array.from(bytes)
+                .map(byte => byte.toString(16).padStart(2, '0'))
+                .join('');
+  }
+  
+  hex2Str(hex) {
+    // 1. Divide o hex em pares de dois dígitos
+    const bytes = hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16));
+  
+    // 2. Converte para string usando UTF-8
+    const decoder = new TextDecoder();
+    return decoder.decode(new Uint8Array(bytes));
   }
 
-  base642String(base64Str) {
-    return new StringBuffer(atob(base64Str));
+  base642String(str) {
+    return this.hex2Str(str);
+  }
+
+  string2Base64(str) {
+    return this.str2Hex(str);
   }
 
   toJsonArrayString() {
     return JSON.stringify([
-      { input: this.getBase64Input().toString() },
-      { output: this.getBase64Output().toString() }
+      { input: this.getBase64Input() },
+      { output: this.getBase64Output() }
     ]);
   }
 }
