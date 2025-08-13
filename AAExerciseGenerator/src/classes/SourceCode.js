@@ -31,7 +31,7 @@ export class SourceCode {
   }
 
   getAttributeValue() {
-    return this.attribute;
+    return this.attribute; 
   }
 
   getAttribute() {
